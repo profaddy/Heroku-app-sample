@@ -35,7 +35,7 @@ function App() {
 
   return (
     <div className="App">
-      <button onClick={addProduct}>Add Product</button>
+      <button onClick={addProduct}>Add Product1</button>
       <ul className="list">
         {(products && products.length > 0) ? (
           products.map(product => renderProduct(product))
