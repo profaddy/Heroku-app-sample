@@ -18,6 +18,12 @@ function App() {
     setproducts(res);
   }
 
+  const addProduct = async () => {
+    let res = await productService.addProduct();
+    console.log(res);
+    getProducts();
+  }
+
   const renderProduct = product => {
     return (
       <li key={product._id} className="list__item product">
@@ -29,6 +35,7 @@ function App() {
 
   return (
     <div className="App">
+      <button onClick={addProduct}>Add Product</button>
       <ul className="list">
         {(products && products.length > 0) ? (
           products.map(product => renderProduct(product))
