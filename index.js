@@ -9,7 +9,7 @@ const app = express();
 
 mongoose.Promise = global.Promise;
 // mongoose.connect(process.env.MONGODB_URI || `mongodb://localhost:27017/node-react-starter`);
-mongoose.connect(process.env.MONGODB_URI || `mongodb+srv://adnansaify11:ndjRmhMrbNEyFaoC@cluster0-gbsnu.mongodb.net/TestOnline?retryWrites=true&w=majority`);
+mongoose.connect(process.env.MONGODB_URI || `mongodb+srv://adnansaify11:oC79bIbGxL13QUHH@cluster0-gbsnu.mongodb.net/TestOnline?retryWrites=true&w=majority`);
 
 
 
