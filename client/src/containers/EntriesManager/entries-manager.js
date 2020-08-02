@@ -18,18 +18,19 @@ import DeleteDialogWrapper from "../../components/DeleteDialogWrapper/DeleteDial
 import FilterForm from "../../components/FilterForm/FilterForm";
 import styles from "./styles";
 import {fetchProducts} from "./entries-manager-api.js";
-
+import ArrowDownwardIcon from "@material-ui/icons/ArrowDownward";
+import ArrowUpwardIcon from "@material-ui/icons/ArrowUpward";
 class EntriesManager extends Component {
     constructor(props) {
         super(props);
         this.state = {
             addEntryModalShowing: false,
-            showCompact: true,
+            showCompact: false,
             savedEntries: [],
             entryMode: "add",
             showDeleteDialog:false,
             showEditOptions:false,
-            columns:this.columns.filter((column,index) => index < 7 ),
+            columns:this.columns.filter((column,index) => index < 6 ),
             isEditConfirmDialogOpen:false,
             compactColumns:this.compactColumns,
             filters:{created_at:null,user_id:null}
@@ -40,16 +41,22 @@ class EntriesManager extends Component {
         {
            name: "Inventory"
        }, {
-           name: "Taken"
-       }, {
-           name: "Consumed"
-       }, {
-           name: "Returned"
+           name: <div style={{display:"flex"}}>
+           <ArrowUpwardIcon style={{color:"red"}}/>
+           {" "}
+Taken
+       </div>
+       },{
+           name: <div style={{display:"flex"}}>
+           <ArrowDownwardIcon style={{color:"green"}}/>
+           {" "}
+Given
+       </div>
        }, {
            name: <div style={{display:"flex"}}>
                <LocalMallOutlinedIcon color="primary"/>
                {" "}
-Bag
+Balance
            </div>
        }
    ]
@@ -63,23 +70,29 @@ Created_at
             </div>
         }, {
             name: "Inventory"
-        }, {
+        },  {
             name: <div style={{display:"flex"}}>
                 <PermIdentityOutlinedIcon color="primary"/>
                 {" "}
 Username
             </div>
+        },{
+            name: <div style={{display:"flex"}}>
+            <ArrowUpwardIcon style={{color:"red"}}/>
+            {" "}
+Taken
+        </div>
         }, {
-            name: "Taken"
-        }, {
-            name: "Consumed"
-        }, {
-            name: "Returned"
+            name: <div style={{display:"flex"}}>
+            <ArrowDownwardIcon style={{color:"green"}}/>
+            {" "}
+Given
+        </div>
         }, {
             name: <div style={{display:"flex"}}>
                 <LocalMallOutlinedIcon color="primary"/>
                 {" "}
-Bag
+Balance
             </div>
         }, {
             name: "Edit",
@@ -132,9 +145,9 @@ Bag
 }
    componentDidMount() {
         this.getProducts();
-    //    this.props._fetchEntries();
-    //    this.props._fetchUsers();
-    //    this.props._fetchInventories();
+       this.props._fetchEntries();
+       this.props._fetchUsers();
+       this.props._fetchInventories();
        const authenticated = localStorage.getItem("authenticated",true);
        if(authenticated === "true"){
            this.setState({columns:this.columns,showEditOptions:true});
@@ -182,7 +195,7 @@ Bag
         if(value === "showEdit"){
             this.setState({showEditOptions:true,columns:columns});
         }else if(value === "hideEdit"){
-            const filteredColumns = columns.filter((column,index) => index < 7 )
+            const filteredColumns = columns.filter((column,index) => index < 6 );
             localStorage.setItem("authenticated",false);
             this.setState({columns:filteredColumns,showEditOptions:false});
         }
@@ -253,7 +266,7 @@ Add User
                     />
                 <div>
                     <MUIDataTable
-                        title={"Switch On Services Employee List"}
+                        title={"Malwa Hardware"}
                         data={compactEntries}
                         columns={this.compactColumns}
                         options={this.options}
@@ -261,7 +274,7 @@ Add User
                 </div></>: <>
                 <div>
                     <MUIDataTable
-                        title={"Switch On Services Employee List"}
+                        title={"Malwa Hardware"}
                         data={entries}
                         columns={this.state.columns || this.columns}
                         options={this.options}
