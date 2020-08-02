@@ -258,7 +258,7 @@ Add User
                     
                 </div>
                 {showCompact === true ? <>
-                              <FilterForm
+                    <FilterForm
                         users={this.props.users}
                         filters={this.state.filters}
                         setFilters={(values) => this.setState({filters:values})}
