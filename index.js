@@ -1,9 +1,10 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const productRoutes = require('./routes/productRoutes');
 
 // IMPORT MODELS
-require('./models/Product');
+// require('./models/Product');
 
 const app = express();
 
@@ -16,7 +17,8 @@ mongoose.connect(process.env.MONGODB_URI || `mongodb+srv://adnansaify11:oC79bIbG
 app.use(bodyParser.json());
 
 //IMPORT ROUTES
-require('./routes/productRoutes')(app);
+// require('./routes/productRoutes')(app);
+app.use("/api/product", productRoutes)(app);
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'));

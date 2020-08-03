@@ -1,9 +1,10 @@
 const mongoose = require('mongoose');
+require('../models/Product');
 const Product = mongoose.model('products');
 
 module.exports = (app) => {
 
-  app.get(`/api/product`, async (req, res) => {
+  app.get(`/`, async (req, res) => {
     let products = await Product.find();
     return res.status(200).send(products);
   });
