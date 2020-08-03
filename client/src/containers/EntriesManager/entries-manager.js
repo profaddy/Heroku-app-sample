@@ -144,7 +144,7 @@ Balance
     console.log(response,"product response");
 }
    componentDidMount() {
-        this.getProducts();
+    // this.getProducts();
        this.props._fetchEntries();
        this.props._fetchUsers();
        this.props._fetchInventories();
