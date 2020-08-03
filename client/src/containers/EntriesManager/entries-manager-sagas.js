@@ -54,7 +54,6 @@ function* fetchEntriesSaga(action) {
                 item.product_name,
                 item.user_name,
                 item.taken,
-                item.consumed,
                 item.returned,
                 item.remaining,
                 item._id,
@@ -107,7 +106,6 @@ function* filterEntrySaga(action){
             const entry = [
                 item.product_name,
                 item.taken,
-                item.consumed,
                 item.returned,
                 item.remaining,
             ];
