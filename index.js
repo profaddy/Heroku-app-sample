@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const http = require("http");
 
 // IMPORT MODELS
 require('./models/Product');
