@@ -38,11 +38,7 @@ require('./routes/productRoutes')(app);
 // require('./api/routes/productRoutes')(app);
 // require('./api//routes/users')(app);
 // require('./api/routes/entries')(app);
-app.use((res, req, next) => {
-  const error = new Error("Not found");
-  error.status = 404;
-  next(error);
-});
+
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'));
@@ -53,6 +49,11 @@ if (process.env.NODE_ENV === 'production') {
   })
 
 }
+app.use((res, req, next) => {
+  const error = new Error("Not found");
+  error.status = 404;
+  next(error);
+});
 const server = http.createServer(app);
 const PORT = process.env.PORT || 5000;
 server.listen(PORT, () => {
