@@ -7,4 +7,3 @@ export const fetchEntryInfo = (id) => api.get(`/entries/${id}`);
 export const updateEntry = (data) => api.put("/entries/", data);
 export const deleteEntry = (data) => api.delete("/entries/",{data:data});
 export const fetchProducts = () => api.get("/api/product");
-

@@ -129,12 +129,12 @@ Balance
 
    options = {
        filterType: "multiselect",
-       responsive: "scroll",
-       rowsPerPage: 100,
+       responsive: "standard",
+       rowsPerPage: 1000,
        selectableRowsHeader: false,
        selectableRows: false,
        rowsPerPageOptions: [
-           10, 30, 50, 100
+           1000, 500, 100, 50, 10
        ],
        fixedHeader: true
    };

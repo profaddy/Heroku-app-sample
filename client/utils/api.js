@@ -1,10 +1,10 @@
 import axios from "axios";
 
 // const apiEndPointHost = process.env.REACT_APP_API_ENDPOINT_HOST ? process.env.REACT_APP_API_ENDPOINT_HOST : "";
-const apiEndPointHost = "http://localhost:4000";
+const apiEndPointHost = "http://localhost:5000";
 
 const api = axios.create({
-    baseURL: apiEndPointHost
+    baseURL: ""
 });
 
 export const arrayBufferApi = axios.create({
