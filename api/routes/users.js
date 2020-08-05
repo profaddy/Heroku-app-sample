@@ -22,10 +22,14 @@ router.post(("/"),async (req, res, next) => {
     }
     const user = new User({
         _id:new mongoose.Types.ObjectId(),
-        name:req.body.name
+        name:req.body.name,
+        village: req.body.village,
+        tehsil: req.body.tehsil,
+        mobile: req.body.mobile
     })
 
     let products = await Product.find();
+    
     const savedUser = await  user.save();
         const stock = await products.map((product) => {
             return {

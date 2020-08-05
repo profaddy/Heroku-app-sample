@@ -5,6 +5,7 @@ import EntriesManager from "./entries-manager";
 import Actions from "./entries-manager-actions";
 import userActions from "../UserManager/user-actions";
 import inventoryActions from "../InventoryManager/inventory-manager-actions";
+import tehsilActions from "../TehsilManager/tehsil-manager-actions";
 
 const mapStateToProps = (state) => {
     return {
@@ -13,8 +14,10 @@ const mapStateToProps = (state) => {
         addEntryModalShowing: state.EntriesManager.addEntryModalShowing,
         addUserModalShowing: state.UserManager.addUserModalShowing,
         addInventoryModalShowing:state.InventoryManager.addInventoryModalShowing,
+        addTehsilModalShowing:state.TehsilManager.addTehsilModalShowing,
         users: state.UserManager.users,
         inventories: state.InventoryManager.inventories,
+        tehsils:state.TehsilManager.tehsils,
         selectedEntry: state.EntriesManager.selectedEntry,
         adminPassword: state.EntriesManager.adminPassword,
         authenticated: state.EntriesManager.authenticated
@@ -29,6 +32,7 @@ const mapDispatchToProps = (dispatch) => {
         _fetchUsers: bindActionCreators(userActions._fetchUsers, dispatch),
         _addUser: bindActionCreators(userActions._addUser, dispatch),
         _addInventory: bindActionCreators(inventoryActions._addInventory, dispatch),
+        _addTehsil: bindActionCreators(tehsilActions._addTehsil,dispatch),
         _addEntry: bindActionCreators(Actions._addEntry, dispatch),
         _filterEntry: bindActionCreators(Actions._filterEntry, dispatch),
         _updateEntry: bindActionCreators(Actions._updateEntry, dispatch),
@@ -39,6 +43,8 @@ const mapDispatchToProps = (dispatch) => {
         _closeAddUserModal: bindActionCreators(userActions._closeAddUserModal, dispatch),
         _openAddInventoryModal: bindActionCreators(inventoryActions._openAddInventoryModal, dispatch),
         _closeAddInventoryModal: bindActionCreators(inventoryActions._closeAddInventoryModal, dispatch),
+        _openAddTehsilModal: bindActionCreators(tehsilActions._openAddTehsilModal, dispatch),
+        _closeAddTehsilModal: bindActionCreators(tehsilActions._closeAddTehsilModal, dispatch),
         createNotification:bindActionCreators(createNotification, dispatch),
         _doAuthenticateEdit:bindActionCreators(Actions._doAuthenticateEdit, dispatch)
     };

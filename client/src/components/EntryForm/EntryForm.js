@@ -8,12 +8,14 @@ import moment from "moment";
 import SelectComponent from "../../components/SelectComponent/SelectComponent";
 import InputField from "../../components/InputField/InputField";
 import ToggleComponent from "../../components/ToggleComponent/ToggleComponent";
+import Grid from '@material-ui/core/Grid';
+
 
 const EntryForm = ({ classes, onCancel, addEntry, users, inventories, entryMode, selectedEntry, updateEntry }) => {
     const [
         initialValues, setCount
     ] = useState({
-        entry_type: "taken",
+        entry_type: "debit",
         entry_mode:entryMode
     });
     const [
@@ -24,8 +26,8 @@ const EntryForm = ({ classes, onCancel, addEntry, users, inventories, entryMode,
     const CombinedInitialValues = entryMode === "add" ? { ...initialValues } : { ...initialValues, ...selectedEntry  };
     return (
         <>
-            <div className={classes.container}>
-                <div className={classes.flex1}>
+            <Grid container xs={12} className={classes.container}>
+                <Grid item xs={12} className={classes.flex1}>
                     <Form
                         onSubmit={(values) => {
                             if (entryMode === "edit") {
@@ -41,7 +43,7 @@ const EntryForm = ({ classes, onCancel, addEntry, users, inventories, entryMode,
                         render={({ handleSubmit, pristine, invalid, values }) => (
                             <form id="add-new-entry" autoComplete="off" onSubmit={handleSubmit}>
                                 {/* <FormSpy onChange={state => this.updateDetails(state.values)} /> */}
-                                <div className={classes.formContainer}>
+                                <Grid item container xs={12} className={classes.formContainer}>
                                     <div className={classes.flex3}>
                                         <div style={{ width: 200 }}>
                                             <Field
@@ -81,7 +83,7 @@ const EntryForm = ({ classes, onCancel, addEntry, users, inventories, entryMode,
                                             <div style={{ width: 200 }}>
                                                 <Field
                                                     type={"number"}
-                                                    label={"Select Quantity"}
+                                                    label={"Amount"}
                                                     name={"entry_value"}
                                                     component={InputField}
                                                     fullWidth={false}
@@ -96,14 +98,11 @@ const EntryForm = ({ classes, onCancel, addEntry, users, inventories, entryMode,
                                                     name="entry_type"
                                                     options={[
                                                         {
-                                                            name: "Taken",
-                                                            value: "taken"
-                                                        }, {
-                                                            name: "Consumed",
-                                                            value: "consumed"
-                                                        }, {
-                                                            name: "Returned",
-                                                            value: "returned"
+                                                            name: "Debit",
+                                                            value: "debit"
+                                                        },{
+                                                            name: "Credit",
+                                                            value: "credit"
                                                         }
                                                     ]}
                                                     width={150}
@@ -161,12 +160,12 @@ const EntryForm = ({ classes, onCancel, addEntry, users, inventories, entryMode,
                                             {/* </Field> */}
                                         </div>
                                     </div>
-                                </div>
+                                </Grid>
                             </form>
                         )}
                     />
-                </div>
-                <div>
+                </Grid>
+                <Grid item xs={12}>
                     <Divider />
                     <div className={classes.modalBodyBottomToolbar}>
                         <Button variant="outlined" onClick={onCancel} className={classes.button}>
@@ -182,8 +181,8 @@ const EntryForm = ({ classes, onCancel, addEntry, users, inventories, entryMode,
                             {submitButtonText}
                         </Button>
                     </div>
-                </div>
-            </div>
+                </Grid>
+            </Grid>
         </>
     );
 };

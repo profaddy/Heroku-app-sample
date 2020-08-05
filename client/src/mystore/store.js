@@ -6,6 +6,7 @@ import sagaMiddleware from "./sagamiddleware";
 import userManagerSagas from "../containers/UserManager/user-manager-sagas";
 import entriesManagerSagas from "../containers/EntriesManager/entries-manager-sagas";
 import inventoryrManagerSagas from "../containers/InventoryManager/inventory-manager-sagas";
+import tehsilManagerSagas from "../containers/TehsilManager/tehsil-manager-sagas";
 
 const initialState = {};
 const enhancers = [];
@@ -37,5 +38,7 @@ const store = createStore(
 sagaMiddleware.run(userManagerSagas);
 sagaMiddleware.run(entriesManagerSagas);
 sagaMiddleware.run(inventoryrManagerSagas);
+sagaMiddleware.run(tehsilManagerSagas);
+
 
 export default store; 

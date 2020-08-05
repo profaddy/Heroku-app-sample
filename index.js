@@ -8,6 +8,7 @@ require('./models/Product');
 const productRoutes = require("./api/routes/products");
 const userRoutes = require("./api/routes/users");
 const entriesRoutes = require("./api/routes/entries");
+const tehsilRoutes = require("./api/routes/tehsils");
 
 const app = express();
 
@@ -31,6 +32,7 @@ app.use((req, res, next) => {
 app.use("/products", productRoutes);
 app.use("/users", userRoutes);
 app.use("/entries", entriesRoutes);
+app.use("/tehsils", tehsilRoutes)
 
 
 //IMPORT ROUTES

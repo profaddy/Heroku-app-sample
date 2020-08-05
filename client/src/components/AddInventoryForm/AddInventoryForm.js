@@ -5,14 +5,15 @@ import styles from "./styles";
 import InputField from "../InputField/InputField";
 import {validator} from "./validator";
 
-const AddInventoryForm = ({ classes, onCancel, addInventory}) => {
+const AddInventoryForm = ({ classes, onCancel, submitAction,fieldName,fieldLabel,buttonText} ) => {
     return (
         <>
             <div className={classes.container}>
                 <div className={classes.flex1}>
                     <Form
                         onSubmit={(values) => {
-                            addInventory(values);
+                            console.log("test")
+                            submitAction(values);
                         }}
                         validate={validator}
                         render={({ handleSubmit, pristine, invalid, values }) => (
@@ -21,8 +22,8 @@ const AddInventoryForm = ({ classes, onCancel, addInventory}) => {
                                     <div style={{ width: 200 }}>
                                         <Field
                                             type={"text"}
-                                            label={"Product name"}
-                                            name={"name"}
+                                            label={fieldLabel}
+                                            name={fieldName}
                                             component={InputField}
                                             fullWidth={false}
                                         />
@@ -45,7 +46,7 @@ const AddInventoryForm = ({ classes, onCancel, addInventory}) => {
                             color="primary"
                             className={classes.button}
                         >
-                            {"Add Inventory"}
+                            {buttonText}
                         </Button>
                     </div>
                 </div>

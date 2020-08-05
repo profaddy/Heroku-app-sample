@@ -6,9 +6,13 @@ const styles = () => ({
         justifyContent: "flex-end"
     },
     formContainer: {
-        display: "flex",
-        flexDirection: "row",
-        padding: "20px 12px"
+        // display: "flex",
+        // flexDirection: "row",
+        padding: "20px 12px",
+        // flexWrap:"wrap"
+    },
+    formItem:{
+        width:"50%"
     },
     button: {
         marginRight: 5

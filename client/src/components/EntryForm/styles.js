@@ -3,7 +3,8 @@ const styles = () => ({
         padding: 10, 
         display: "flex", 
         flexDirection: "row", 
-        justifyContent: "flex-end"
+        justifyContent: "flex-end",
+        flexWrap:"wrap",
     },
     formContainer: {
         display: "flex",
