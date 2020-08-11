@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import moment from "moment";
 import MUIDataTable from 'mui-datatables';
 import Button from '@material-ui/core/Button';
 import EditIcon from '@material-ui/icons/Edit';
@@ -21,6 +22,9 @@ import styles from './styles';
 import { fetchProducts } from './entries-manager-api.js';
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
+import TableRow from "@material-ui/core/TableRow";
+import TableCell from "@material-ui/core/TableCell";
+
 class EntriesManager extends Component {
   constructor(props) {
     super(props);
@@ -31,7 +35,7 @@ class EntriesManager extends Component {
       entryMode: 'add',
       showDeleteDialog: false,
       showEditOptions: false,
-      columns: this.columns.filter((column, index) => index < 6),
+      columns: this.columns.filter((column, index) => index < 7),
       isEditConfirmDialogOpen: false,
       compactColumns: this.compactColumns,
       filters: { created_at: null, user_id: null },
@@ -68,43 +72,71 @@ class EntriesManager extends Component {
 
   columns = [
     {
-      name: (
-        <div style={{ display: 'flex' }}>
-          <EventOutlinedIcon color="primary" /> Created_at
-        </div>
-      ),
+      options:{
+        display:false,
+        filter:false
+      },
+      name:"Date"
+      // name: (
+      //   <div style={{ display: 'flex' }}>
+      //     <EventOutlinedIcon color="primary" /> Created_at
+      //   </div>
+      // ),
     },
     {
-      name: 'Item',
+    name:"Name"
+      // name: (
+      //   <div style={{ display: 'flex' }}>
+      //     {/* <PermIdentityOutlinedIcon color="primary" /> */}
+          
+      //      Name
+      //   </div>
+      // ),
+    },
+    {
+      options:{
+        // display:false,
+      },
+      name: 'Tehsil',
+    },
+    {
+      options:{
+        display:false,
+        filter:false
+      },
+      name:"Debit"
+      // name: (
+      //   <div style={{ display: 'flex' }}>
+      //     <ArrowUpwardIcon style={{ color: 'red' }} /> Debit
+      //   </div>
+      // ),
+    },
+    {
+      options:{
+        display:false,
+        filter:false
+      },
+      name:"Credit"
+      // name: (
+      //   <div style={{ display: 'flex' }}>
+      //     <ArrowDownwardIcon style={{ color: 'green' }} /> Credit
+      //   </div>
+      // ),
     },
     {
       name: (
         <div style={{ display: 'flex' }}>
-          <PermIdentityOutlinedIcon color="primary" /> Name
+          {/* <LocalMallOutlinedIcon color="primary" />  */}
+          Balance
         </div>
       ),
-    },
-    {
-      name: (
-        <div style={{ display: 'flex' }}>
-          <ArrowUpwardIcon style={{ color: 'red' }} /> Debit
-        </div>
-      ),
-    },
-    {
-      name: (
-        <div style={{ display: 'flex' }}>
-          <ArrowDownwardIcon style={{ color: 'green' }} /> Credit
-        </div>
-      ),
-    },
-    {
-      name: (
-        <div style={{ display: 'flex' }}>
-          <LocalMallOutlinedIcon color="primary" /> Balance
-        </div>
-      ),
-    },
+    },{
+      name: "_id",
+      options: {
+        display: false,
+        filter:false
+      }
+    }, 
     {
       name: 'Edit',
       options: {
@@ -144,7 +176,7 @@ class EntriesManager extends Component {
           );
         },
       },
-    },
+    } 
   ];
 
   getProducts = async () => {
@@ -228,6 +260,7 @@ class EntriesManager extends Component {
   render() {
     const {
       entries,
+      tableEntries,
       addEntryModalShowing,
       addUserModalShowing,
       addInventoryModalShowing,
@@ -244,6 +277,19 @@ class EntriesManager extends Component {
       selectableRows: false,
       rowsPerPageOptions: [1000, 500, 100, 50, 10],
       fixedHeader: true,
+      expandableRows:true,
+      renderExpandableRow: (rowData, rowMeta) => {
+        console.log(rowData,rowMeta, this.props.entries);
+        const expandedRowData = entries.filter((item) => item._id === rowData[6])[0];
+        return <TableRow>
+        <TableCell colSpan={rowData.length + 1}>
+        <div>Name - {expandedRowData.user_name}</div>
+        <div>Item - {expandedRowData.product_name}</div>
+        <div>Amount - Rs {expandedRowData.remaining}</div>
+        <div>Date - {moment.utc(expandedRowData.created_at, "YYYY-MM-DDThh:mm:ss.sssZ").local().format("DD-MM-YYYY")}</div>
+        </TableCell>
+      </TableRow>
+      }
     };
     return (
       <div>
@@ -343,7 +389,7 @@ class EntriesManager extends Component {
             <div>
               <MUIDataTable
                 title={'Malwa Hardware'}
-                data={entries}
+                data={tableEntries}
                 columns={this.state.columns || this.columns}
                 options={options}
               />

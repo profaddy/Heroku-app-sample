@@ -51,18 +51,19 @@ function* fetchEntriesSaga(action) {
             const created_at = moment.utc(item.created_at, "YYYY-MM-DDThh:mm:ss.sssZ").local().format("DD-MM-YYYY");
             const entry = [
                 created_at,
-                item.product_name,
                 item.user_name,
+                item.product_name,
                 item.taken,
                 item.returned,
                 item.remaining,
                 item._id,
-                item._id
+                item._id,
+                item._id,
             ];
             acc.push(entry);
             return acc;
         }, []);
-        yield put({ type: Actions.FETCH_ENTRY_SUCCESS, data: formattedEntries });
+        yield put({ type: Actions.FETCH_ENTRY_SUCCESS, data: {tableEntries:formattedEntries,fullEntries:entries} });
     } catch (error) {
         yield put(createNotification(`error while fetching entry: ${error.response.data.message}`, "error"));
         yield put({ type: Actions.FETCH_ENTRY_FAILURE });

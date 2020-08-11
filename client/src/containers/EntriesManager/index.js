@@ -10,6 +10,7 @@ import tehsilActions from "../TehsilManager/tehsil-manager-actions";
 const mapStateToProps = (state) => {
     return {
         entries: state.EntriesManager.entries,
+        tableEntries: state.EntriesManager.tableEntries,
         compactEntries: state.EntriesManager.filteredEntries,
         addEntryModalShowing: state.EntriesManager.addEntryModalShowing,
         addUserModalShowing: state.UserManager.addUserModalShowing,
