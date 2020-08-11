@@ -84,6 +84,9 @@ class EntriesManager extends Component {
       // ),
     },
     {
+      options:{
+        display:true,
+      },
     name:"Name"
       // name: (
       //   <div style={{ display: 'flex' }}>
@@ -124,12 +127,16 @@ class EntriesManager extends Component {
       // ),
     },
     {
-      name: (
-        <div style={{ display: 'flex' }}>
-          {/* <LocalMallOutlinedIcon color="primary" />  */}
-          Balance
-        </div>
-      ),
+      options:{
+        display:false
+      },
+      name:"Balance"
+      // name: (
+      //   <div style={{ display: 'flex' }}>
+      //     {/* <LocalMallOutlinedIcon color="primary" />  */}
+      //     Balance
+      //   </div>
+      // ),
     },{
       name: "_id",
       options: {
